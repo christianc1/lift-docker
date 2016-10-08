@@ -41,7 +41,7 @@ _Use these at your own risk_
 - Stop all containers: `docker stop $(docker ps -aq)` _All containers, not just this environment's_
 - Kill all containers: `docker kill $(docker ps -aq)`
 - Destroy all container images: `docker rmi -f $(docker images -q)`
-- Destroy all mounted volumes: docker volume rm $(docker volume ls |awk '{print $2}')`
+- Destroy all mounted volumes: `docker volume rm $(docker volume ls |awk '{print $2}')`
 
 ### Todo
 - Create a workflow where full project manifests are stored in a composer.json
