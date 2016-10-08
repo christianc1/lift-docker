@@ -39,7 +39,7 @@ This is a repository starter for local WordPress development using Docker.
 ### Other Commands
 _Use these at your own risk_
 - Stop all containers: `docker stop $(docker ps -aq)` _All containers, not just this environment's_
-- Kill all containers: `docker kill $(docker ps -aq)`
+- Kill all containers: `docker rm $(docker ps -aq)`
 - Destroy all container images: `docker rmi -f $(docker images -q)`
 - Destroy all mounted volumes: `docker volume rm $(docker volume ls |awk '{print $2}')`
 
