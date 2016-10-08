@@ -20,24 +20,26 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'wordpress');
+define( 'DB_NAME', 'wordpress' );
 
 /** MySQL database username */
-define('DB_USER', 'wordpress');
+define( 'DB_USER', 'wordpress' );
 
 /** MySQL database password */
-define('DB_PASSWORD', 'wordpress');
+define( 'DB_PASSWORD', 'wordpress' );
 
 /** MySQL hostname */
-define('DB_HOST', 'mysql');
+define( 'DB_HOST', 'mysql' );
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8');
+define( 'DB_CHARSET', 'utf8' );
 
 /** The Database Collate type. Don't change this if in doubt. */
-define('DB_COLLATE', '');
+define( 'DB_COLLATE', '' );
 
-/**#@+
+/**
+
+#@+
  * Authentication Unique Keys and Salts.
  *
  * Change these to different unique phrases!
@@ -46,14 +48,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'put your unique phrase here');
-define('SECURE_AUTH_KEY',  'put your unique phrase here');
-define('LOGGED_IN_KEY',    'put your unique phrase here');
-define('NONCE_KEY',        'put your unique phrase here');
-define('AUTH_SALT',        'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT',   'put your unique phrase here');
-define('NONCE_SALT',       'put your unique phrase here');
+define( 'AUTH_KEY',         '3$-.]m^BfmR^:Lc%#5#)qqh?,Sk|Jz?-h;x2LVE)b [8k-C(xT:vi]+MAmA.K:nd' );
+define( 'SECURE_AUTH_KEY',  'FS 6.Adbg]uenGG!/C-Is{8Z!q&hyiH6}lF&$HMb!Y^3^Jq+.%I rK_2(?<,6m(I' );
+define( 'LOGGED_IN_KEY',    'VRNbyCZ|(+S>I8Bz~g|ic%|)ip+-w3P>8h)l]u(>bRZ,M<)];+jO<ytn7$_K$zT8' );
+define( 'NONCE_KEY',        'r5]iyO*=s-*6|Eknq0UZ3;sS0Nh_-pXMTmOTYIB 6#<-6dls>C]kiu/1>c 3.~^+' );
+define( 'AUTH_SALT',        'NFz0 =:|#b1PzRqURkG5i780`vhQ.l5Z0H],.C^$4^wtI)4P]p~LG,LRpfl.z1K4' );
+define( 'SECURE_AUTH_SALT', '-jRLckji(+$Ig [ItA]rv_7La:,^rkntD<1f65{cSxy|<<D}b5Su!m5-IOqi| @U' );
+define( 'LOGGED_IN_SALT',   '1Fz6_||V{VQaS4Jev#>u)eV=}(/-gdv3.l- }WFH9S~xj6N{z#w|p}ripXut9#& ' );
+define( 'NONCE_SALT',       '||z7~2o<b$VUE/Q{)1T-PTx+] {KD#@h*taZ%+/?f{CZ)0x},LkGc!f||=`7oo8/' );
 
 /**#@-*/
 
@@ -70,10 +72,10 @@ $table_prefix  = 'wp_';
  */
 global $memcached_servers;
 $memcached_servers = array(
-    array(
-        'memcached', // Memcached server IP address
-        11211        // Memcached server port
-    )
+	array(
+		'memcached', // Memcached server IP address
+		11211,        // Memcached server port
+	),
 );
 
 /**
@@ -88,15 +90,15 @@ $memcached_servers = array(
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', true);
-define('WP_DEBUG_DISPLAY', false );
-define('WP_DEBUG_LOG', true );
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_DISPLAY', false );
+define( 'WP_DEBUG_LOG', true );
 
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */
-if ( !defined('ABSPATH') )
-	define('ABSPATH', dirname(__FILE__) . '/');
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', dirname( __FILE__ ) . '/' ); }
 
 /** Sets up WordPress vars and included files. */
-require_once(ABSPATH . 'wp-settings.php');
+require_once( ABSPATH . 'wp-settings.php' );

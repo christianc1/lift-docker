@@ -22,6 +22,9 @@ services:
     volumes:
       - "./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini"
       - "./docker/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
+      - "./docker/wordpress/wp-config.php:/var/www/public/wp-config.php"
+      - "./docker/wordpress/object-cache.php:/var/www/public/wp-content/object-cache.php"
+      - "public:/var/www/public"
     volumes_from:
       - code
     links:
@@ -39,6 +42,8 @@ services:
     container_name: nginx
     volumes:
       - "./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+    volumes_from:
+      - phpfpm
     links:
       - phpfpm
     restart: always
@@ -57,4 +62,11 @@ services:
     build: ./docker/wordpress
     container_name: code
     volumes:
-      - "./code:/var/www/public/"
+      - "./code:/var/www/public/wp-content/"
+
+volumes:
+  public:
+
+networks:
+  front:
+    driver: bridge

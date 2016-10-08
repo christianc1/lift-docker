@@ -61,7 +61,7 @@ RUN { \
 
 RUN curl -O "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar" \
     && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp-clip
+    && mv wp-cli.phar /usr/local/bin/wp-cli
 
 RUN mkdir -p /etc/wp-cli
 
@@ -80,5 +80,9 @@ RUN curl -sSL "https://getcomposer.org/installer" | php \
     && mv composer.phar /usr/local/bin/composer
 
 WORKDIR /var/www/public
+
+RUN git clone https://github.com/wordpress/wordpress.git .
+
+RUN chown -R www-data:www-data /var/www/public
 
 EXPOSE 9000
