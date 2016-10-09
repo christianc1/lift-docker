@@ -83,6 +83,12 @@ WORKDIR /var/www/public
 
 RUN git clone https://github.com/wordpress/wordpress.git .
 
+RUN { \
+      if [ -n $WP_IS_VIP ]; then \
+        git clone --recursive https://github.com/automattic/vip-mu-plugins-public.git /var/www/public/wp-content/mu-plugins; \
+      fi\
+    }
+
 RUN chown -R www-data:www-data /var/www/public
 
 EXPOSE 9000

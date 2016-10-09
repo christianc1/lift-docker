@@ -13,12 +13,16 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
 
-  phpfpm:
+  php:
     depends_on:
       - mysql
-      - code
+      - themes
+      - plugins
+      - uploads
     build: ./docker/php-fpm
-    container_name: phpfpm
+    container_name: php
+    environment:
+      - WP_INSTALLATION_TYPE
     volumes:
       - "./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini"
       - "./docker/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
@@ -26,16 +30,19 @@ services:
       - "./docker/wordpress/object-cache.php:/var/www/public/wp-content/object-cache.php"
       - "public:/var/www/public"
     volumes_from:
-      - code
+      - themes
+      - plugins
+      - uploads
     links:
       - mysql
       - memcached
       - mailhog
-      - code
+      - themes
+      - plugins
 
   nginx:
     depends_on:
-      - phpfpm
+      - php
     ports:
       - "8080:80"
     image: nginx:latest
@@ -43,9 +50,9 @@ services:
     volumes:
       - "./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf"
     volumes_from:
-      - phpfpm
+      - php
     links:
-      - phpfpm
+      - php
     restart: always
 
   memcached:
@@ -58,15 +65,30 @@ services:
     ports:
       - "8081:8025"
 
-  code:
+  themes:
     build: ./docker/wordpress
-    container_name: code
+    container_name: themes
     volumes:
-      - "./code:/var/www/public/wp-content/"
+      - "./code/themes:/var/www/public/wp-content/themes"
+
+  plugins:
+    build: ./docker/wordpress
+    container_name: plugins
+    volumes:
+      - "./code/plugins:/var/www/public/wp-content/plugins"
+
+  uploads:
+    build: ./docker/wordpress
+    container_name: uploads
+    volumes:
+      - "./code/uploads:/var/www/public/wp-content/uploads"
+
+  vip:
+    build: ./docker/wordpress/vip
+    container_name: vip
+    volumes: 
+      - "vip:/var/www/public/wp-content/mu-plugins"
 
 volumes:
   public:
-
-networks:
-  front:
-    driver: bridge
+  vip:
