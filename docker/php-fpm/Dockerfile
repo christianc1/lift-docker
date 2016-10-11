@@ -67,7 +67,7 @@ RUN mkdir -p /etc/wp-cli
 
 RUN { \
       echo 'path: /var/www/public'; \
-      echo 'url: project.dev'; \
+      echo "url: " $DOCKER_DEV_DOMAIN; \
     } > /etc/wp-cli/config.yml
 
 RUN { \

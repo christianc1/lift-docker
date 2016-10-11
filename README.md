@@ -20,21 +20,39 @@ This is a repository starter for local WordPress development using Docker.
 
 ### Getting started
 1. Clone this Repo
-2. cd into the cloned directory and run `docker-compose up -d`
-3. Navigate to http://localhost:8080
-4. Complete WordPress setup
+2. cd into the cloned directory
+3. Set environmental variables in `.env` file
+4. Run `docker-compose up -d`
+5. Update your hosts file consistent with this example: `127.0.0.1 localhost wordpress.lift`
+6. Go to http://wordpress.lift and hopefully everything just worked.
+
+## Test that things are working
+1. SSH into the php container `docker exec -it php /bin/bash`
+2. Ensure wp-cli is setup `wp --info`
+3. Ensure cron can loop back to WordPress `wp cron test`
+4. Ensure the object cache can persist data `wp cache set foo bar` then, `wp cache get foo`
+
+## Tools
+- Access Mailhog at http://wordpress.lift:8081
 
 ## Theme Development
-1. Add a new theme folder to `code/themes`
+1. Add a new theme folder to `code/themes` or require it with `composer.json`
 2. Activate it from the admin
 3. Make an awesome theme!
+
+## Plugin Development
+1. Add a new plugin folder to `code/plugins` or require it with composer.json
+2. Activate it from the admin
+3. Make an awesome plugin!
 
 ### Useful Commands
 - List containers: `docker ps -a`
 - SSH into a container: `docker exec -it nginx /bin/bash`
 - Bring the environment down: `docker-compose down`
+- Bring the environment down and remove orphaned containers: `docker-compose down --remove-orphans`
 - Restart a container: `docker-compose restart nginx`
 - Rebuild containers: `docker-compose up -d --build`
+- View logs from a container: `docker-compose logs proxy`
 
 ### Other Commands
 _Use these at your own risk_

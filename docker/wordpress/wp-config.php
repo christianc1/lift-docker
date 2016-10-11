@@ -67,6 +67,10 @@ define( 'NONCE_SALT',       '||z7~2o<b$VUE/Q{)1T-PTx+] {KD#@h*taZ%+/?f{CZ)0x},Lk
  */
 $table_prefix  = 'wp_';
 
+define('WP_HOME','http://wordpress.lift');
+define('WP_SITEURL','http://wordpress.lift');
+define('DISABLE_WP_CRON', false);
+
 /**
  * Cache all the things
  */
